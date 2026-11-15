@@ -15,7 +15,7 @@
   <h1>Felipe Valenzuela</h1>
   <p class="role">Desarrollador Full-Stack | Analista de Sistemas</p>
   <p class="contact">
-    <a href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a> <span class="sep">|</span> <a href="https://www.linkedin.com/in/felipe-valenzuelaa/">linkedin.com/in/felipe-valenzuelaa</a> <span class="sep">|</span> <a href="https://github.com/FelipeValenzuela00">github.com/FelipeValenzuela00</a> <span class="sep">|</span> <a href="https://felipevalenzuela00.github.io/">felipevalenzuela00.github.io</a> <span class="sep">|</span> Argentina
+    <a href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a> <span class="sep">|</span> <a href="https://www.linkedin.com/in/felipe-valenzuelaa/">linkedin.com/in/felipe-valenzuelaa</a> <span class="sep">|</span> <a href="https://github.com/FelipeValenzuela00">github.com/FelipeValenzuela00</a> <span class="sep">|</span> <a href="https://felipevalenzuela00.github.io/">felipevalenzuela00.github.io</a> <span class="sep">|</span> CABA, Argentina
   </p>
 </header>
 
@@ -25,13 +25,23 @@
 </section>
 
 <section>
+  <h2>Habilidades técnicas</h2>
+  <dl class="skills">
+    <dt>Lenguajes y backend</dt><dd>C#, JavaScript, TypeScript, SQL, .NET 8, ASP.NET Core, Node.js, Express, REST APIs, JWT, OAuth 2.0</dd>
+    <dt>Frontend y datos</dt><dd>React, Next.js, Tailwind CSS, PostgreSQL, SQL Server, MongoDB, Entity Framework Core, Prisma</dd>
+    <dt>IA</dt><dd>Integración de LLMs (Anthropic, Gemini, NVIDIA NIM), evaluación de modelos, validación de salidas; aprendiendo Python (pytest, asyncio, pydantic)</dd>
+    <dt>Calidad y DevOps</dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions, Git</dd>
+  </dl>
+</section>
+
+<section>
   <h2>Proyectos</h2>
 
   <div class="item">
     <div class="head"><h3>Asistente Financiero: plataforma SaaS de finanzas para pymes con IA</h3><span class="date">2026 – actualidad</span></div>
     <p class="sub">Proyecto en dúo con Diego Scopetta. <a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero">github.com/FelipeValenzuela00/AsistenteFinanciero</a></p>
     <ul>
-      <li>Diseñé el backend en ASP.NET Core 8 con Clean Architecture: API, modelo de datos y CI con GitHub Actions.</li>
+      <li>Diseñé el backend en ASP.NET Core 8 con Clean Architecture: API, modelo de datos y CI con GitHub Actions. El proyecto suma más de 800 tests automatizados (unitarios, de integración contra PostgreSQL real con Testcontainers y de frontend).</li>
       <li>Implementé el aislamiento multi-empresa con Row-Level Security en PostgreSQL y la sincronización con Clerk por webhooks firmados e idempotentes.</li>
       <li>Construí saldos consistentes bajo concurrencia (bloqueo de filas) y transferencias atómicas entre ARS y USD; los verifiqué con tests de 20 gastos en paralelo y de invariante con operaciones aleatorias.</li>
       <li>Diseñé un asistente con IA que interpreta lenguaje natural pero nunca toca el dinero: carga movimientos en una bandeja que aprueba una persona y valida la salida del modelo contra el catálogo de la empresa.</li>
@@ -65,28 +75,18 @@
   </div>
 
   <div class="item">
-    <div class="head"><h3>Bailongo: API de una red social de música</h3><span class="date">2025</span></div>
-    <p class="sub">Trabajo práctico de Taller de Programación II (ORT Belgrano), equipo de 3. <a href="https://github.com/santi-porte/Bailongo">github.com/santi-porte/Bailongo</a></p>
-    <ul>
-      <li>Desarrollé la funcionalidad de comentarios en canciones (modelo, controlador y rutas) y correcciones en canciones, álbumes y artistas, sobre una API con autenticación JWT y roles.</li>
-    </ul>
-    <p class="tech"><b>Tecnologías:</b> Node.js, Express, MongoDB, Mongoose, JWT.</p>
-  </div>
-
-  <div class="item">
-    <div class="head"><h3>Checklist: gestión de checklists operativos</h3><span class="date">2025</span></div>
-    <p class="sub">Proyecto universitario en equipo (ORT Belgrano). <a href="https://github.com/FelipeValenzuela00/checklist">github.com/FelipeValenzuela00/checklist</a></p>
-    <ul>
-      <li>Implementé el login con redirección por rol (supervisor y colaborador), la protección de rutas, el cierre de sesión y la barra de notificaciones.</li>
-    </ul>
-    <p class="tech"><b>Tecnologías:</b> Next.js, React, Tailwind CSS.</p>
-  </div>
-
-  <div class="item">
     <div class="head"><h3>Path-To-AIengineering</h3><span class="date">2026 – en curso</span></div>
     <p class="sub">Programa público de 12 semanas para especializarme en sistemas con LLMs en Python. <a href="https://github.com/FelipeValenzuela00/Path-To-AIengineering">github.com/FelipeValenzuela00/Path-To-AIengineering</a></p>
     <ul>
       <li>Terminé la fase de Python con un CLI que ordena carpetas, con tests en pytest, lint con ruff y CI en GitHub Actions. Ahora trabajo con la API de Claude.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>Otros proyectos</h3></div>
+    <ul class="others">
+      <li><b>Bailongo</b> (2025). API REST de una red social de música en Node.js, Express, MongoDB y JWT (equipo de 3). Desarrollé los comentarios en canciones. <a href="https://github.com/santi-porte/Bailongo">github.com/santi-porte/Bailongo</a></li>
+      <li><b>Checklist</b> (2025). Frontend en Next.js y React con roles (equipo). Hice el login con redirección por rol, la protección de rutas y las notificaciones. <a href="https://github.com/FelipeValenzuela00/checklist">github.com/FelipeValenzuela00/checklist</a></li>
     </ul>
   </div>
 </section>
@@ -111,17 +111,6 @@
   </div>
 </section>
 
-<section>
-  <h2>Habilidades técnicas</h2>
-  <dl class="skills">
-    <dt>Backend</dt><dd>C#, .NET 8, ASP.NET Core, Node.js, Express</dd>
-    <dt>Frontend</dt><dd>React, Next.js, TypeScript, Tailwind CSS</dd>
-    <dt>Datos</dt><dd>PostgreSQL, SQL Server, MongoDB, Entity Framework Core, Prisma, Mongoose</dd>
-    <dt>IA</dt><dd>Integración de LLMs (Anthropic, Gemini, NVIDIA NIM), evaluación de modelos, validación de salidas</dd>
-    <dt>Calidad y DevOps</dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions, Git</dd>
-    <dt>Aprendiendo</dt><dd>Python (pytest, asyncio, pydantic), API de Claude</dd>
-  </dl>
-</section>
 
 <section>
   <h2>Educación</h2>

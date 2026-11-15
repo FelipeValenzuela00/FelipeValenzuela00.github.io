@@ -15,7 +15,7 @@
   <h1>Felipe Valenzuela</h1>
   <p class="role">Full-Stack Developer | Systems Analyst</p>
   <p class="contact">
-    <a href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a> <span class="sep">|</span> <a href="https://www.linkedin.com/in/felipe-valenzuelaa/">linkedin.com/in/felipe-valenzuelaa</a> <span class="sep">|</span> <a href="https://github.com/FelipeValenzuela00">github.com/FelipeValenzuela00</a> <span class="sep">|</span> <a href="https://felipevalenzuela00.github.io/">felipevalenzuela00.github.io</a> <span class="sep">|</span> Argentina
+    <a href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a> <span class="sep">|</span> <a href="https://www.linkedin.com/in/felipe-valenzuelaa/">linkedin.com/in/felipe-valenzuelaa</a> <span class="sep">|</span> <a href="https://github.com/FelipeValenzuela00">github.com/FelipeValenzuela00</a> <span class="sep">|</span> <a href="https://felipevalenzuela00.github.io/">felipevalenzuela00.github.io</a> <span class="sep">|</span> Buenos Aires (CABA), Argentina
   </p>
 </header>
 
@@ -25,13 +25,23 @@
 </section>
 
 <section>
+  <h2>Technical skills</h2>
+  <dl class="skills">
+    <dt>Languages and backend</dt><dd>C#, JavaScript, TypeScript, SQL, .NET 8, ASP.NET Core, Node.js, Express, REST APIs, JWT, OAuth 2.0</dd>
+    <dt>Frontend and data</dt><dd>React, Next.js, Tailwind CSS, PostgreSQL, SQL Server, MongoDB, Entity Framework Core, Prisma</dd>
+    <dt>AI</dt><dd>LLM integration (Anthropic, Gemini, NVIDIA NIM), model evaluation, output validation; learning Python (pytest, asyncio, pydantic)</dd>
+    <dt>Quality and DevOps</dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions, Git</dd>
+  </dl>
+</section>
+
+<section>
   <h2>Projects</h2>
 
   <div class="item">
     <div class="head"><h3>Asistente Financiero: AI-powered finance SaaS for small businesses</h3><span class="date">2026 – present</span></div>
     <p class="sub">Two-person project with Diego Scopetta. <a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero">github.com/FelipeValenzuela00/AsistenteFinanciero</a></p>
     <ul>
-      <li>Designed the ASP.NET Core 8 backend with Clean Architecture: API, data model and CI with GitHub Actions.</li>
+      <li>Designed the ASP.NET Core 8 backend with Clean Architecture: API, data model and CI with GitHub Actions. The project has over 800 automated tests (unit, integration against a real PostgreSQL with Testcontainers, and frontend).</li>
       <li>Built multi-tenant isolation with PostgreSQL Row-Level Security and Clerk sync through signed, idempotent webhooks.</li>
       <li>Built balances that stay correct under concurrency (row locking) and atomic ARS/USD transfers, verified with a 20-parallel-expense test and a randomized invariant test.</li>
       <li>Designed an AI assistant that parses natural language but never touches money: it queues transactions for human approval and validates model output against the company’s catalog.</li>
@@ -65,28 +75,18 @@
   </div>
 
   <div class="item">
-    <div class="head"><h3>Bailongo: music social network API</h3><span class="date">2025</span></div>
-    <p class="sub">Programming Workshop II course project (ORT Belgrano), team of 3. <a href="https://github.com/santi-porte/Bailongo">github.com/santi-porte/Bailongo</a></p>
-    <ul>
-      <li>Built song comments (model, controller and routes) and fixed the songs, albums and artists endpoints, in an API with JWT authentication and roles.</li>
-    </ul>
-    <p class="tech"><b>Stack:</b> Node.js, Express, MongoDB, Mongoose, JWT.</p>
-  </div>
-
-  <div class="item">
-    <div class="head"><h3>Checklist: operational checklist management</h3><span class="date">2025</span></div>
-    <p class="sub">University team project (ORT Belgrano). <a href="https://github.com/FelipeValenzuela00/checklist">github.com/FelipeValenzuela00/checklist</a></p>
-    <ul>
-      <li>Built role-based login redirects (supervisor and collaborator), route protection, logout and the notifications bar.</li>
-    </ul>
-    <p class="tech"><b>Stack:</b> Next.js, React, Tailwind CSS.</p>
-  </div>
-
-  <div class="item">
     <div class="head"><h3>Path-To-AIengineering</h3><span class="date">2026 – ongoing</span></div>
     <p class="sub">Public 12-week program to specialize in LLM systems with Python. <a href="https://github.com/FelipeValenzuela00/Path-To-AIengineering">github.com/FelipeValenzuela00/Path-To-AIengineering</a></p>
     <ul>
       <li>Finished the Python phase with a folder-organizing CLI, tested with pytest, linted with ruff and running CI on GitHub Actions. Now working with the Claude API.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>Other projects</h3></div>
+    <ul class="others">
+      <li><b>Bailongo</b> (2025). Music social network REST API in Node.js, Express, MongoDB and JWT (team of 3). I built song comments. <a href="https://github.com/santi-porte/Bailongo">github.com/santi-porte/Bailongo</a></li>
+      <li><b>Checklist</b> (2025). Next.js and React frontend with roles (team). I built role-based login redirects, route protection and notifications. <a href="https://github.com/FelipeValenzuela00/checklist">github.com/FelipeValenzuela00/checklist</a></li>
     </ul>
   </div>
 </section>
@@ -111,17 +111,6 @@
   </div>
 </section>
 
-<section>
-  <h2>Technical skills</h2>
-  <dl class="skills">
-    <dt>Backend</dt><dd>C#, .NET 8, ASP.NET Core, Node.js, Express</dd>
-    <dt>Frontend</dt><dd>React, Next.js, TypeScript, Tailwind CSS</dd>
-    <dt>Data</dt><dd>PostgreSQL, SQL Server, MongoDB, Entity Framework Core, Prisma, Mongoose</dd>
-    <dt>AI</dt><dd>LLM integration (Anthropic, Gemini, NVIDIA NIM), model evaluation, output validation</dd>
-    <dt>Quality and DevOps</dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions, Git</dd>
-    <dt>Learning</dt><dd>Python (pytest, asyncio, pydantic), Claude API</dd>
-  </dl>
-</section>
 
 <section>
   <h2>Education</h2>
