@@ -6,7 +6,7 @@
 <title>Felipe Valenzuela | Full-stack developer</title>
 <meta name="description" content="Desarrollador full-stack (.NET, Node.js, React) que integra IA en productos reales. Full-stack developer integrating AI into real products.">
 <meta property="og:title" content="Felipe Valenzuela | Full-stack developer">
-<meta property="og:description" content="Asistente Financiero, AutoLog y más: proyectos full-stack con IA.">
+<meta property="og:description" content="Proyectos full-stack con IA: Asistente Financiero, AutoLog y más. Full-stack projects with AI.">
 <meta property="og:image" content="https://felipevalenzuela00.github.io/assets/af-asistente.jpg">
 <meta property="og:url" content="https://felipevalenzuela00.github.io/">
 <meta property="og:type" content="website">
@@ -167,7 +167,7 @@
   .about p { max-width: 60ch; margin: 0 0 1rem; font-size: 1.125rem; }
   .about p:last-child { margin: 1.5rem 0 0; font-size: 1rem; font-weight: 500; }
   .tools { display: grid; gap: 1rem 2rem; margin: 0; }
-  @media (min-width: 40rem) { .tools { grid-template-columns: 9rem 1fr; } }
+  @media (min-width: 40rem) { .tools { grid-template-columns: 12rem 1fr; } }
   .tools dt { font-weight: 700; }
   .tools dd { margin: 0; color: var(--muted); }
 
@@ -247,6 +247,18 @@
       </div>
     </div>
 
+    <section class="skills" aria-labelledby="skills">
+      <h2 id="skills">Skills</h2>
+      <dl class="tools">
+        <dt>Backend</dt><dd>C#, .NET 8, Node.js, Express</dd>
+        <dt>Frontend</dt><dd>React, Next.js, TypeScript, Vite, Tailwind CSS</dd>
+        <dt><span data-l="es">Datos</span><span data-l="en">Data</span></dt><dd>PostgreSQL, SQL Server, MongoDB, EF Core, Prisma, Mongoose</dd>
+        <dt><span data-l="es">IA</span><span data-l="en">AI</span></dt><dd>Anthropic (Claude), Gemini, NVIDIA NIM</dd>
+        <dt><span data-l="es">Calidad y despliegue</span><span data-l="en">Quality and delivery</span></dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions</dd>
+        <dt><span data-l="es">Aprendiendo</span><span data-l="en">Learning</span></dt><dd>Python (pytest, asyncio, pydantic), <span data-l="es">API de Claude</span><span data-l="en">Claude API</span></dd>
+      </dl>
+    </section>
+
     <section aria-labelledby="proyectos">
       <h2 id="proyectos"><span data-l="es">Proyectos</span><span data-l="en">Projects</span></h2>
 
@@ -258,7 +270,7 @@
         </p>
         <p class="context">
           <span data-l="es">Producto en desarrollo con Diego Scopetta, en camino a su beta.</span>
-          <span data-l="en">Product built with Diego Scopetta, heading to its beta.</span>
+          <span data-l="en">Product in development with Diego Scopetta, heading to its beta.</span>
         </p>
         <figure>
           <video src="assets/af-asistente.mp4" poster="assets/af-asistente.jpg" width="960" height="540" muted loop playsinline controls preload="metadata" data-autoplay></video>
@@ -378,7 +390,7 @@
             <h4>Stack</h4>
             <p>.NET 8, EF Core, PostgreSQL, React, TypeScript, Docker, GitHub Actions.</p>
             <ul>
-              <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero"><span data-l="es">Ver más demos</span><span data-l="en">More demos</span></a></li>
+              <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero"><span data-l="es">Vitrina del proyecto (demos)</span><span data-l="en">Project showcase (demos)</span></a></li>
               <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero/blob/main/docs/arquitectura.md"><span data-l="es">Arquitectura</span><span data-l="en">Architecture</span></a></li>
               <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero/tree/main/docs/decisiones"><span data-l="es">Decisiones técnicas</span><span data-l="en">Technical decisions</span></a></li>
             </ul>
@@ -393,7 +405,7 @@
           <span data-l="en">Rebuilds an employee’s workday from Google Calendar, Drive and Jira, and writes a daily AI report saved to their Drive.</span>
         </p>
         <p class="context">
-          <span data-l="es">Proyecto final de Analista en Sistemas (ORT Belgrano), en equipo.</span>
+          <span data-l="es">Proyecto final de Analista de Sistemas (ORT Belgrano), en equipo.</span>
           <span data-l="en">Team capstone project for the Systems Analyst degree (ORT Belgrano).</span>
         </p>
         <figure>
@@ -487,10 +499,11 @@
           </div>
           <div class="side">
             <h4>Stack</h4>
-            <p>Node.js, Express, Prisma, PostgreSQL, React, Tailwind CSS, Google APIs, Jira.</p>
+            <p>Node.js, Express, Prisma, PostgreSQL, React, Tailwind CSS, Google APIs, Jira, Gemini.</p>
             <ul>
-              <li><a href="https://github.com/FelipeValenzuela00/AutoLog"><span data-l="es">Ver más demos</span><span data-l="en">More demos</span></a></li>
+              <li><a href="https://github.com/FelipeValenzuela00/AutoLog"><span data-l="es">Vitrina del proyecto (demos)</span><span data-l="en">Project showcase (demos)</span></a></li>
               <li><a href="https://github.com/LicFuraca/proyecto-final-back"><span data-l="es">Código del backend</span><span data-l="en">Backend code</span></a></li>
+              <li><a href="https://github.com/Equipo-4-ORT/proyecto-final-front"><span data-l="es">Código del frontend</span><span data-l="en">Frontend code</span></a></li>
             </ul>
           </div>
         </div>
@@ -546,18 +559,6 @@
         <span data-l="es">CLI en Python que ordena una carpeta por tipo de archivo o por mes. Muestra el plan antes de mover nada y nunca sobrescribe. Tests con pytest, lint con ruff y CI en GitHub Actions.</span>
         <span data-l="en">Python CLI that sorts a folder by file type or by month. It previews the plan before moving anything and never overwrites. Tested with pytest, linted with ruff, CI on GitHub Actions.</span>
       </p>
-    </section>
-
-    <section aria-labelledby="herramientas">
-      <h2 id="herramientas"><span data-l="es">Herramientas</span><span data-l="en">Tools</span></h2>
-      <dl class="tools">
-        <dt>Backend</dt><dd>C#, .NET 8, Node.js, Express</dd>
-        <dt>Frontend</dt><dd>React, Next.js, TypeScript, Vite, Tailwind CSS</dd>
-        <dt><span data-l="es">Datos</span><span data-l="en">Data</span></dt><dd>PostgreSQL, SQL Server, MongoDB, EF Core, Prisma, Mongoose</dd>
-        <dt><span data-l="es">IA</span><span data-l="en">AI</span></dt><dd>Gemini, NVIDIA NIM</dd>
-        <dt><span data-l="es">Calidad y despliegue</span><span data-l="en">Quality and delivery</span></dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions</dd>
-        <dt><span data-l="es">Aprendiendo</span><span data-l="en">Learning</span></dt><dd>Python (pytest, asyncio, pydantic), <span data-l="es">API de Claude</span><span data-l="en">Claude API</span></dd>
-      </dl>
     </section>
   </main>
 
