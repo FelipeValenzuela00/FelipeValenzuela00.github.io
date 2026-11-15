@@ -44,3 +44,4 @@ li + li { margin-top: 1pt; }
 .skills { display: grid; grid-template-columns: 34mm 1fr; gap: 2pt 8pt; margin: 0; }
 .skills dt { font-weight: 700; }
 .skills dd { margin: 0; }
+.nw { white-space: nowrap; }
