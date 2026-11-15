@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felipe Valenzuela Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cv.css">
+</head>
+<body>
+
+<header>
+  <h1>Felipe Valenzuela</h1>
+  <p class="role">Full-Stack Developer focused on applied AI | Systems Analyst</p>
+  <p class="contact">
+    <a href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a> <span class="sep">|</span> <a href="tel:+5491170311300">+54 9 11 7031-1300</a> <span class="sep">|</span> <a href="https://www.linkedin.com/in/felipe-valenzuelaa/">linkedin.com/in/felipe-valenzuelaa</a> <span class="sep">|</span> <a href="https://github.com/FelipeValenzuela00">github.com/FelipeValenzuela00</a> <span class="sep">|</span> <a href="https://felipevalenzuela00.github.io/">felipevalenzuela00.github.io</a> <span class="sep">|</span> Buenos Aires (CABA), Argentina
+  </p>
+</header>
+
+<section>
+  <h2>Profile</h2>
+  <p>Full-stack developer (.NET, Node.js, React) who integrates AI into real products and is specializing in applied AI: tool-using LLMs, evaluated RAG and production agents. I put LLMs behind a multi-provider adapter, built a custom model evaluation, and designed an assistant that never touches money: a person approves every transaction. English B2 (Cambridge), studying for C2.</p>
+</section>
+
+<section>
+  <h2>Technical skills</h2>
+  <dl class="skills">
+    <dt>AI</dt><dd>LLM integration (Anthropic, Gemini, NVIDIA NIM), model evaluation (accuracy, latency, cost, manipulation resistance), output validation, human-in-the-loop approval; in progress: Python (pytest, asyncio, pydantic) and the Claude API</dd>
+    <dt>Languages and backend</dt><dd>C#, JavaScript, TypeScript, SQL, .NET 8, ASP.NET Core, Node.js, Express, REST APIs, JWT, OAuth 2.0</dd>
+    <dt>Frontend and data</dt><dd>React, Next.js, Tailwind CSS, PostgreSQL, SQL Server, MongoDB, Entity Framework Core, Prisma</dd>
+    <dt>Quality and DevOps</dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions, Git</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="item">
+    <div class="head"><h3>Asistente Financiero: AI-powered finance SaaS for small businesses</h3><span class="date">Jul 2026 – present</span></div>
+    <p class="sub">Two-person project with Diego Scopetta. <a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero">github.com/FelipeValenzuela00/AsistenteFinanciero</a></p>
+    <ul>
+      <li>Designed the ASP.NET Core 8 backend with Clean Architecture: API, data model and CI with GitHub Actions. The project has over 800 automated tests (unit, integration against a real PostgreSQL with Testcontainers, and frontend).</li>
+      <li>Designed an AI assistant that parses natural language but never touches money: it queues transactions for human approval and validates model output against the company’s catalog.</li>
+      <li>Put the AI behind a multi-provider adapter (Gemini, NVIDIA NIM, Anthropic) and built a custom model evaluation: per-field accuracy, latency, cost and manipulation resistance.</li>
+      <li>Built multi-tenant isolation with PostgreSQL Row-Level Security and Clerk sync through signed, idempotent webhooks.</li>
+      <li>Built balances that stay correct under concurrency (row locking) and atomic ARS/USD transfers, verified with a 20-parallel-expense test and a randomized invariant test.</li>
+      <li>Built CSV statement import with duplicate detection, and monthly recurring expenses and income.</li>
+    </ul>
+    <p class="tech"><b>Stack:</b> C#, .NET 8, EF Core, PostgreSQL, React, TypeScript, Docker, GitHub Actions, xUnit, Testcontainers.</p>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>Path-To-AIengineering: applied AI specialization</h3><span class="date">Oct 2026 – present</span></div>
+    <p class="sub">Public 12-week program (~20 h/week) to go from using AI APIs to building evaluated, deployed AI systems. <a href="https://github.com/FelipeValenzuela00/Path-To-AIengineering">github.com/FelipeValenzuela00/Path-To-AIengineering</a></p>
+    <ul>
+      <li>Finished the professional Python phase: a CLI tested with pytest, linted with ruff and running CI on GitHub Actions. Now working with the Claude API.</li>
+      <li>Next phases: a tool-using assistant, a FastAPI service with Docker, RAG with a metrics report, and a deployed agent. Each phase ships with a README, tests, CI and a public repo.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>AutoLog: automatic workday tracking with AI</h3><span class="date">Mar – Jul 2026</span></div>
+    <p class="sub">Systems Analyst capstone (ORT Belgrano) for Finnegans, team project.<br>
+    <span class="nw">Showcase: <a href="https://github.com/FelipeValenzuela00/AutoLog">github.com/FelipeValenzuela00/AutoLog</a></span> · <span class="nw">Backend: <a href="https://github.com/LicFuraca/proyecto-final-back">github.com/LicFuraca/proyecto-final-back</a></span> · <span class="nw">Frontend: <a href="https://github.com/Equipo-4-ORT/proyecto-final-front">github.com/Equipo-4-ORT/proyecto-final-front</a></span></p>
+    <ul>
+      <li>Built the daily AI report (Gemini), with sanitized input and validated output before writing the spreadsheet.</li>
+      <li>Set up the backend foundation: Express API, Prisma schema and migrations, and Docker.</li>
+      <li>Built Google sign-in and session security: HttpOnly cookies, rotating refresh tokens with reuse detection, and third-party tokens encrypted with AES-256-GCM.</li>
+      <li>Integrated Google Calendar and merged Calendar, Drive and Jira activity into one timeline.</li>
+      <li>On the React frontend, fixed the dashboard, history, admin page and sign-in, with tests. 80% minimum coverage, met.</li>
+    </ul>
+    <p class="tech"><b>Stack:</b> Node.js, Express, Prisma, PostgreSQL, React, Tailwind CSS, Google APIs, Jira, Jest, Vitest.</p>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>Instituto Educativo: academic management system</h3><span class="date">Apr – Jun 2025</span></div>
+    <p class="sub">University project, team of 4 (ORT Belgrano). <a href="https://github.com/FelipeValenzuela00/InstitutoEducativo">github.com/FelipeValenzuela00/InstitutoEducativo</a></p>
+    <ul>
+      <li>Built the teachers module (grading, averages and completed courses) and the first Identity integration for role-based access.</li>
+    </ul>
+    <p class="tech"><b>Stack:</b> C#, ASP.NET Core MVC, Entity Framework, SQL Server.</p>
+  </div>
+
+
+  <div class="item">
+    <div class="head"><h3>Other projects</h3></div>
+    <ul class="others">
+      <li><b>Bailongo</b> (Sep – Nov 2025). Music social network REST API in Node.js, Express, MongoDB and JWT (team of 3). I built song comments. <a href="https://github.com/santi-porte/Bailongo">github.com/santi-porte/Bailongo</a></li>
+      <li><b>Checklist</b> (Sep – Nov 2025). Next.js and React frontend with roles (team). I built role-based login redirects, route protection and notifications. <a href="https://github.com/FelipeValenzuela00/checklist">github.com/FelipeValenzuela00/checklist</a></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+
+  <div class="item">
+    <div class="head"><h3>Technical support and digitization: Chul Hak San (independent)</h3><span class="date">Jul – Aug 2026</span></div>
+    <ul>
+      <li>Gathered the client’s needs and organized their operations in Google Workspace (Drive and spreadsheets).</li>
+      <li>Built a Google My Maps map of their locations from their spreadsheets.</li>
+      <li>Trained a team with little digital experience to adopt the new tools.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="head"><h3>Hardware technician and IT support (independent)</h3><span class="date">Jul 2020 – present</span></div>
+    <ul>
+      <li>Building, configuring, diagnosing and repairing computers, and advising users based on budget and needs.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <h2>Education</h2>
+  <div class="item">
+    <div class="head"><h3>Systems Analyst degree, ORT Belgrano</h3><span class="date">2024 – 2026</span></div>
+  </div>
+  <div class="item">
+    <div class="head"><h3>High school diploma in Economics and Business, Instituto Santa María de los Ángeles</h3><span class="date">2019 – 2023</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Languages and courses</h2>
+  <ul>
+    <li>English: Cambridge Institute, B2 level (2024 – 2026). Currently studying for C2.</li>
+    <li>Spanish: native.</li>
+    <li>Educación IT: hardware assembly and repair.</li>
+  </ul>
+</section>
+
+</body>
+</html>

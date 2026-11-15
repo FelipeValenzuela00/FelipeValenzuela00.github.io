@@ -7,6 +7,9 @@ const { chromium } = require("playwright");
 const jobs = [
   ["cv-es.html", "../assets/cv-felipe-valenzuela-es.pdf"],
   ["cv-en.html", "../assets/cv-felipe-valenzuela-en.pdf"],
+  // Variante orientada a IA aplicada (puestos de IA, LLMs, agentes)
+  ["cv-es-ia.html", "../assets/cv-felipe-valenzuela-ia-es.pdf"],
+  ["cv-en-ia.html", "../assets/cv-felipe-valenzuela-ia-en.pdf"],
 ];
 
 (async () => {
