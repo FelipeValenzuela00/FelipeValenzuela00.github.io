@@ -1,0 +1,46 @@
+/* Estilos compartidos por cv-es.html y cv-en.html. Pensado para imprimir en A4. */
+@page { size: A4; margin: 11mm 15mm 12mm; }
+:root {
+  --ink: #17212B;
+  --muted: #56636F;
+  --rule: #C9D1D8;
+}
+* { box-sizing: border-box; }
+html { background: #fff; }
+body {
+  margin: 0; color: var(--ink); background: #fff;
+  font: 400 9.6pt/1.45 "Schibsted Grotesk", system-ui, sans-serif;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+/* En pantalla se ve como una hoja; al imprimir manda @page. */
+@media screen { body { max-width: 210mm; margin: 0 auto; padding: 15mm; } }
+a { color: inherit; text-decoration: none; }
+
+header { padding-bottom: 9pt; border-bottom: 1pt solid var(--ink); margin-bottom: 12pt; }
+h1 { font-size: 22pt; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 4pt; }
+.role { font-size: 11pt; margin: 0 0 6pt; }
+.contact { color: var(--muted); margin: 0; }
+.contact a { white-space: nowrap; }
+.contact .sep { color: var(--rule); }
+
+h2 {
+  font-size: 10.5pt; font-weight: 700; margin: 14pt 0 7pt; padding-bottom: 4pt;
+  border-bottom: 0.75pt solid var(--rule);
+}
+section:first-of-type h2 { margin-top: 0; }
+p { margin: 0; }
+
+.item { margin-bottom: 9pt; break-inside: avoid; }
+.item:last-child { margin-bottom: 0; }
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+h3 { font-size: 10.3pt; font-weight: 700; margin: 0; }
+.date { font-size: 9pt; color: var(--muted); white-space: nowrap; }
+.sub { font-size: 9.2pt; color: var(--muted); margin: 1pt 0 2pt; }
+ul { margin: 2pt 0 0; padding-left: 13pt; }
+li + li { margin-top: 1pt; }
+.tech { font-size: 9pt; margin-top: 3pt; }
+.tech b { font-weight: 500; }
+
+.skills { display: grid; grid-template-columns: 34mm 1fr; gap: 2pt 8pt; margin: 0; }
+.skills dt { font-weight: 700; }
+.skills dd { margin: 0; }
