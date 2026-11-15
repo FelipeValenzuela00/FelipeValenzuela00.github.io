@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Felipe Valenzuela | Full-stack developer</title>
+<meta name="description" content="Desarrollador full-stack (.NET, Node.js, React) que integra IA en productos reales. Full-stack developer integrating AI into real products.">
+<meta property="og:title" content="Felipe Valenzuela | Full-stack developer">
+<meta property="og:description" content="Asistente Financiero, AutoLog y más: proyectos full-stack con IA.">
+<meta property="og:image" content="assets/af-asistente.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2317212B'/%3E%3Ctext x='16' y='21.5' font-family='Arial' font-weight='700' font-size='14' fill='%23F4F6F7' text-anchor='middle'%3EFV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script>
+  // Idioma: ?lang= > elección guardada > idioma del navegador. Corre antes de pintar para evitar parpadeo.
+  (function () {
+    var q = new URLSearchParams(location.search).get("lang"), saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var lang = q || saved || ((navigator.language || "es").toLowerCase().indexOf("es") === 0 ? "es" : "en");
+    document.documentElement.lang = lang === "en" ? "en" : "es";
+  })();
+</script>
+<style>
+  :root {
+    --paper: #F4F6F7;
+    --surface: #FFFFFF;
+    --ink: #17212B;
+    --muted: #56636F;
+    --rule: #D3DAE0;
+    --credit: #1E6B52;
+    --debit: #A63D32;
+    --focus: #1E6B52;
+    --sans: "Schibsted Grotesk", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12181E;
+      --surface: #1A222A;
+      --ink: #E6EBEF;
+      --muted: #9AA7B2;
+      --rule: #2C3741;
+      --credit: #5FBF97;
+      --debit: #E0786B;
+      --focus: #5FBF97;
+      color-scheme: dark;
+    }
+  }
+
+  html[lang="es"] [data-l="en"], html[lang="en"] [data-l="es"] { display: none; }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1rem; }
+  @media (min-width: 48rem) { .wrap { padding: 0 2rem; } }
+
+  /* Barra superior */
+  .top { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; }
+  .top .name { font-weight: 700; text-decoration: none; }
+  .langs { display: flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; }
+  .langs button {
+    font: 500 0.875rem/1 var(--sans); color: var(--muted); background: none; border: 0;
+    padding: 0.45rem 0.8rem; border-radius: 999px; cursor: pointer;
+  }
+  .langs button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+  /* Hero */
+  .hero { display: grid; gap: 2.5rem; padding: 3rem 0 4.5rem; align-items: center; }
+  @media (min-width: 60rem) { .hero { grid-template-columns: 1fr 1.05fr; gap: 4rem; padding: 4.5rem 0 6rem; } }
+  h1 {
+    font-size: clamp(2.75rem, 7vw, 4.75rem); line-height: 0.98; font-weight: 800;
+    letter-spacing: -0.035em; margin: 0 0 1.5rem;
+  }
+  .lede { font-size: 1.25rem; line-height: 1.5; max-width: 32ch; margin: 0 0 1rem; }
+  .meta { color: var(--muted); margin: 0 0 1.75rem; max-width: 46ch; }
+  .contact { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; padding: 0; margin: 0; list-style: none; font-weight: 500; }
+  .btn {
+    display: inline-block; background: var(--ink); color: var(--paper); text-decoration: none;
+    padding: 0.6rem 1.1rem; border-radius: 6px; margin: -0.6rem 0;
+  }
+  .contact li { padding: 0.6rem 0; }
+
+  /* El ejemplo del asistente: lo único llamativo de la página */
+  .demo { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 1.25rem; }
+  @media (min-width: 48rem) { .demo { padding: 1.75rem; } }
+  .said {
+    font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.3; font-weight: 500; margin: 0 0 1.25rem;
+    padding-left: 1rem; border-left: 3px solid var(--rule);
+  }
+  .demo table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  .demo caption { text-align: left; color: var(--muted); font-size: 0.875rem; padding-bottom: 0.5rem; }
+  .demo th { text-align: left; font-weight: 500; color: var(--muted); font-size: 0.8125rem; padding: 0.4rem 0.5rem 0.4rem 0; border-bottom: 1px solid var(--rule); }
+  .demo td { padding: 0.7rem 0.5rem 0.7rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .demo .amt { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; padding-right: 0; }
+  .demo th.amt { font-family: var(--sans); }
+  .out { color: var(--debit); }
+  .in { color: var(--credit); }
+  .demo .note { color: var(--muted); font-size: 0.875rem; margin: 1rem 0 0; }
+  @media (prefers-reduced-motion: no-preference) {
+    .demo tbody tr { opacity: 0; transform: translateY(4px); animation: row 0.45s ease-out forwards; }
+    .demo tbody tr:nth-child(1) { animation-delay: 0.5s; }
+    .demo tbody tr:nth-child(2) { animation-delay: 0.8s; }
+    @keyframes row { to { opacity: 1; transform: none; } }
+  }
+
+  /* Secciones */
+  section { border-top: 1px solid var(--rule); padding: 3.5rem 0; }
+  h2 { font-size: 1rem; font-weight: 500; color: var(--muted); margin: 0 0 2rem; }
+  .project + .project { margin-top: 4.5rem; }
+  h3 { font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; margin: 0 0 0.5rem; }
+  .summary { font-size: 1.2rem; line-height: 1.5; max-width: 52ch; margin: 0 0 0.5rem; }
+  .context { color: var(--muted); margin: 0 0 1.5rem; }
+  figure { margin: 0 0 1.75rem; }
+  video { display: block; width: 100%; max-width: 960px; height: auto; aspect-ratio: 16 / 9; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+  figcaption { color: var(--muted); font-size: 0.875rem; margin-top: 0.5rem; }
+  .body { display: grid; gap: 2rem; }
+  @media (min-width: 52rem) { .body { grid-template-columns: minmax(0, 1fr) 16rem; gap: 3rem; } }
+  h4 { font-size: 1rem; font-weight: 700; margin: 0 0 0.75rem; }
+  .detail > h4:not(:first-child) { margin-top: 2.25rem; }
+  .detail > p { margin: 0; max-width: 62ch; }
+  .decisions { margin: 0; max-width: 62ch; }
+  .decisions dt { font-weight: 500; }
+  .decisions dd { margin: 0.15rem 0 1rem; color: var(--muted); }
+  .decisions dd:last-child { margin-bottom: 0; }
+  @media (min-width: 52rem) { .side { position: sticky; top: 1.5rem; align-self: start; } }
+  .more { margin-top: 1.75rem; }
+  .more > h4 { margin-top: 2.25rem; }
+  .more summary {
+    display: inline-block; list-style: none; cursor: pointer; font-weight: 500;
+    background: transparent; color: var(--ink); border: 1px solid var(--rule);
+    padding: 0.55rem 1rem; border-radius: 6px;
+  }
+  .more summary::-webkit-details-marker { display: none; }
+  .more summary:hover { border-color: var(--muted); }
+  .more .opened, .more[open] .closed { display: none; }
+  .more[open] .opened { display: inline; }
+  .did { margin: 0; padding-left: 1.1rem; max-width: 62ch; }
+  .did li + li { margin-top: 0.6rem; }
+  .side p { margin: 0 0 1.5rem; color: var(--muted); }
+  .side ul { list-style: none; padding: 0; margin: 0; }
+  .side li + li { margin-top: 0.4rem; }
+
+  .now p { max-width: 60ch; margin: 0; font-size: 1.125rem; }
+  .now p.small { margin-top: 1rem; font-size: 1rem; color: var(--muted); }
+  .now p.small a { color: var(--ink); font-weight: 700; }
+  .others { margin-top: 4rem; padding-top: 2rem; border-top: 1px dashed var(--rule); }
+  .others p { margin: 0; max-width: 62ch; }
+  .others p + p { margin-top: 1rem; }
+  .others a { font-weight: 700; }
+  .about-grid { display: grid; gap: 1.75rem; align-items: start; }
+  @media (min-width: 48rem) { .about-grid { grid-template-columns: 13rem 1fr; gap: 3rem; } }
+  .photo { display: block; width: 100%; max-width: 13rem; height: auto; border-radius: 10px; border: 1px solid var(--rule); }
+  .about p { max-width: 60ch; margin: 0 0 1rem; font-size: 1.125rem; }
+  .about p:last-child { margin: 1.5rem 0 0; font-size: 1rem; font-weight: 500; }
+  .tools { display: grid; gap: 1rem 2rem; margin: 0; }
+  @media (min-width: 40rem) { .tools { grid-template-columns: 9rem 1fr; } }
+  .tools dt { font-weight: 700; }
+  .tools dd { margin: 0; color: var(--muted); }
+
+  .end { padding: 4rem 0 5rem; }
+  .end p { font-size: clamp(1.5rem, 3.5vw, 2.25rem); line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; max-width: 26ch; margin: 0 0 1.5rem; }
+  .end .mail { font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: 500; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="name" href="#">Felipe Valenzuela</a>
+    <div class="langs" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set="es" aria-pressed="false">ES</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Felipe Valenzuela</h1>
+        <p class="lede">
+          <span data-l="es">Desarrollador full-stack. Construyo aplicaciones web con .NET, Node.js y React, y les integro IA donde resuelve un problema real.</span>
+          <span data-l="en">Full-stack developer. I build web apps with .NET, Node.js and React, and add AI where it solves a real problem.</span>
+        </p>
+        <p class="meta">
+          <span data-l="es">Analista de Sistemas (ORT Belgrano). Argentina. Trabajo en español e inglés.</span>
+          <span data-l="en">Systems Analyst (ORT Belgrano). Argentina. I work in English and Spanish.</span>
+        </p>
+        <ul class="contact">
+          <li><a class="btn" href="mailto:valenzuela.felipe205@gmail.com"><span data-l="es">Escribime</span><span data-l="en">Email me</span></a></li>
+          <li><a href="https://www.linkedin.com/in/felipe-valenzuelaa/">LinkedIn</a></li>
+          <li><a href="https://github.com/FelipeValenzuela00">GitHub</a></li>
+          <li><a data-l="es" href="assets/cv-felipe-valenzuela-es.pdf">CV (PDF)</a><a data-l="en" href="assets/cv-felipe-valenzuela-en.pdf">Résumé (PDF)</a></li>
+        </ul>
+      </div>
+
+      <div class="demo">
+        <p class="said">
+          <span data-l="es">«3500 de súper con la Visa y cobré 50 mil en el banco»</span>
+          <span data-l="en">“3,500 on groceries with the Visa, and I got paid 50k into the bank”</span>
+        </p>
+        <table>
+          <caption>
+            <span data-l="es">Lo que registra el asistente de Asistente Financiero</span>
+            <span data-l="en">What the Asistente Financiero assistant records</span>
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col"><span data-l="es">Tipo</span><span data-l="en">Type</span></th>
+              <th scope="col"><span data-l="es">Cuenta</span><span data-l="en">Account</span></th>
+              <th scope="col"><span data-l="es">Categoría</span><span data-l="en">Category</span></th>
+              <th scope="col" class="amt"><span data-l="es">Monto</span><span data-l="en">Amount</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span data-l="es">Gasto</span><span data-l="en">Expense</span></td>
+              <td>Visa</td>
+              <td><span data-l="es">Supermercado</span><span data-l="en">Groceries</span></td>
+              <td class="amt out"><span data-l="es">−3.500</span><span data-l="en">−3,500</span> ARS</td>
+            </tr>
+            <tr>
+              <td><span data-l="es">Ingreso</span><span data-l="en">Income</span></td>
+              <td><span data-l="es">Banco</span><span data-l="en">Bank</span></td>
+              <td><span data-l="es">Cobros</span><span data-l="en">Payments</span></td>
+              <td class="amt in"><span data-l="es">+50.000</span><span data-l="en">+50,000</span> ARS</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="note">
+          <span data-l="es">Ejemplo ilustrativo. La IA interpreta el texto y cada movimiento queda en una bandeja de revisión antes de tocar los saldos.</span>
+          <span data-l="en">Illustrative example. The AI parses the text, and each entry waits in a review queue before it touches any balance.</span>
+        </p>
+      </div>
+    </div>
+
+    <section aria-labelledby="proyectos">
+      <h2 id="proyectos"><span data-l="es">Proyectos</span><span data-l="en">Projects</span></h2>
+
+      <article class="project">
+        <h3>Asistente Financiero</h3>
+        <p class="summary">
+          <span data-l="es">Finanzas para pymes argentinas en pesos y dólares, con saldos que siempre cierran y un asistente con IA que registra movimientos y responde consultas.</span>
+          <span data-l="en">Finance app for Argentine small businesses in pesos and dollars, with balances that always add up and an AI assistant that records transactions and answers questions.</span>
+        </p>
+        <p class="context">
+          <span data-l="es">Producto en desarrollo con Diego Scopetta, en camino a su beta.</span>
+          <span data-l="en">Product built with Diego Scopetta, heading to its beta.</span>
+        </p>
+        <figure>
+          <video src="assets/af-asistente.mp4" poster="assets/af-asistente.jpg" width="960" height="540" muted loop playsinline controls preload="metadata" data-autoplay></video>
+          <figcaption>
+            <span data-l="es">El asistente responde con los datos de la empresa. Datos ficticios de «Pyme Demo SRL».</span>
+            <span data-l="en">The assistant answers with the company’s own data. Fictional data from a demo company.</span>
+          </figcaption>
+        </figure>
+        <div class="body">
+          <div class="detail">
+            <h4><span data-l="es">El problema</span><span data-l="en">The problem</span></h4>
+            <p>
+              <span data-l="es">Las pymes argentinas suelen llevar sus finanzas en planillas sueltas: varias cuentas, dos monedas con una cotización que cambia todos los días y movimientos que llegan por WhatsApp. Los saldos no cierran y nadie ve el negocio completo.</span>
+              <span data-l="en">Argentine small businesses often run their finances on scattered spreadsheets: several accounts, two currencies with an exchange rate that changes every day, and transactions that arrive over WhatsApp. Balances don’t add up and nobody sees the whole business.</span>
+            </p>
+            <h4><span data-l="es">Qué hice</span><span data-l="en">What I did</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">Diseñé el backend en ASP.NET Core 8 con Clean Architecture: API, modelo de datos y CI con GitHub Actions.</span>
+                <span data-l="en">Designed the ASP.NET Core 8 backend with Clean Architecture: API, data model and CI with GitHub Actions.</span>
+              </li>
+              <li>
+                <span data-l="es">Implementé el aislamiento entre empresas con Row-Level Security en PostgreSQL (rol de la app sin privilegios y empresa fijada en cada conexión) y la sincronización con Clerk por webhooks firmados e idempotentes.</span>
+                <span data-l="en">Built tenant isolation with PostgreSQL Row-Level Security (an unprivileged app role, with the tenant set on every connection) and Clerk sync through signed, idempotent webhooks.</span>
+              </li>
+              <li>
+                <span data-l="es">Construí saldos consistentes bajo concurrencia (bloqueo de filas) y transferencias atómicas entre monedas, con la cotización de la fecha o el monto realmente acreditado.</span>
+                <span data-l="en">Built balances that stay correct under concurrency (row locking) and atomic cross-currency transfers, using the rate for that date or the amount actually credited.</span>
+              </li>
+              <li>
+                <span data-l="es">Diseñé el asistente para que la IA nunca toque el dinero: interpreta el texto, pero solo carga movimientos en una bandeja que aprueba una persona, y su respuesta se valida contra el catálogo de la empresa antes de usarla.</span>
+                <span data-l="en">Designed the assistant so the AI never touches money: it interprets the text but only queues transactions in an inbox a person approves, and its output is validated against the company’s catalog before use.</span>
+              </li>
+              <li>
+                <span data-l="es">Integré la IA detrás de un adapter para cambiar de proveedor (Anthropic, Gemini, NVIDIA NIM) por configuración, y la evalúo con frases de uso real.</span>
+                <span data-l="en">Put the AI behind an adapter so the provider (Anthropic, Gemini, NVIDIA NIM) is a config change, and evaluate it against real-world phrases.</span>
+              </li>
+            </ul>
+
+            <details class="more">
+            <summary><span data-l="es"><span class="closed">Mostrar más</span><span class="opened">Mostrar menos</span></span><span data-l="en"><span class="closed">Show more</span><span class="opened">Show less</span></span></summary>
+            <h4><span data-l="es">Decisiones técnicas</span><span data-l="en">Technical decisions</span></h4>
+            <dl class="decisions">
+              <dt><span data-l="es">Row-Level Security en una sola base de datos</span><span data-l="en">Row-Level Security in a single database</span></dt>
+              <dd>
+                <span data-l="es">Aísla los datos de cada empresa en la propia base, sin el costo operativo de tener una base por cliente.</span>
+                <span data-l="en">Isolates each company’s data inside the database itself, without the operational cost of one database per customer.</span>
+              </dd>
+              <dt><span data-l="es">Montos en decimal y cotización guardada en cada transacción</span><span data-l="en">Decimal amounts, and the exchange rate stored on every transaction</span></dt>
+              <dd>
+                <span data-l="es">Cuentas exactas y reportes históricos que no cambian cuando cambia el dólar.</span>
+                <span data-l="en">Exact math, and historical reports that don’t change when the dollar does.</span>
+              </dd>
+              <dt><span data-l="es">Saldos incrementales con bloqueo de filas</span><span data-l="en">Incremental balances with row locking</span></dt>
+              <dd>
+                <span data-l="es">Dos gastos simultáneos sobre la misma cuenta no pueden dejar un saldo incorrecto.</span>
+                <span data-l="en">Two simultaneous expenses on the same account can’t leave a wrong balance.</span>
+              </dd>
+              <dt><span data-l="es">La salida del modelo es entrada no confiable</span><span data-l="en">Model output is untrusted input</span></dt>
+              <dd>
+                <span data-l="es">El texto del usuario se sanea antes de llegar al modelo, y su respuesta pasa por un parser estricto que solo acepta valores conocidos y cuentas o categorías de la empresa.</span>
+                <span data-l="en">User text is sanitized before it reaches the model, and its response goes through a strict parser that only accepts known values and the company’s own accounts and categories.</span>
+              </dd>
+              <dt><span data-l="es">IA detrás de un adapter</span><span data-l="en">AI behind an adapter</span></dt>
+              <dd>
+                <span data-l="es">Cambiar de proveedor es un cambio de configuración, así que puedo comparar modelos con los mismos datos antes de elegir uno.</span>
+                <span data-l="en">Switching providers is a config change, so I can compare models on the same data before choosing one.</span>
+              </dd>
+            </dl>
+
+            <h4><span data-l="es">Cómo sé que funciona</span><span data-l="en">How I know it works</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">El proyecto tiene más de 2.000 tests automatizados: unitarios, de integración contra PostgreSQL real (Testcontainers) y de frontend.</span>
+                <span data-l="en">The project has over 2,000 automated tests: unit, integration against a real PostgreSQL (Testcontainers), and frontend.</span>
+              </li>
+              <li>
+                <span data-l="es">Escribí un test que lanza 20 gastos en paralelo sobre la misma cuenta y otro que aplica 50 operaciones aleatorias con semilla fija: en los dos, el saldo final siempre cuadra.</span>
+                <span data-l="en">I wrote one test that fires 20 parallel expenses at the same account and another that applies 50 seeded random operations: in both, the final balance always adds up.</span>
+              </li>
+              <li>
+                <span data-l="es">Armé una evaluación propia que mide, campo por campo, qué tan bien interpreta cada modelo frases de uso real, además de su latencia, su costo y su resistencia a la manipulación. La corro antes de elegir o cambiar de modelo.</span>
+                <span data-l="en">I built a custom evaluation that measures, field by field, how well each model parses real-world phrases, plus latency, cost and resistance to manipulation. I run it before choosing or switching models.</span>
+              </li>
+              <li>
+                <span data-l="es">Cada PR pasa por CI con analizadores en modo estricto y migraciones probadas contra PostgreSQL.</span>
+                <span data-l="en">Every PR runs CI with strict analyzers and migrations tested against PostgreSQL.</span>
+              </li>
+            </ul>
+
+            <h4><span data-l="es">Lo que aprendí</span><span data-l="en">What I learned</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">A medir la IA en vez de suponer: la evaluación mostró que el modelo gratuito acierta la mayoría de las frases pero falla con las transferencias entre cuentas. Ahora sé qué mejorar en el prompt y qué pedirle al modelo de producción.</span>
+                <span data-l="en">To measure the AI instead of guessing: the evaluation showed the free model gets most phrases right but fails on transfers between accounts. Now I know what to fix in the prompt and what to require from the production model.</span>
+              </li>
+              <li>
+                <span data-l="es">El primer mes nos repartimos el trabajo por capas (yo el backend, Diego el frontend). Lo cambiamos pronto: desde entonces cada uno es dueño de una funcionalidad de punta a punta, y eso redujo las dependencias entre los dos.</span>
+                <span data-l="en">For the first month we split the work by layer (me on the backend, Diego on the frontend). We changed it early: since then each of us owns a feature end to end, which cut the dependencies between us.</span>
+              </li>
+            </ul>
+
+            <h4><span data-l="es">También construí</span><span data-l="en">I also built</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">Importación de extractos en CSV con detección de duplicados, errores por número de fila y neutralización de fórmulas para evitar inyecciones en planillas.</span>
+                <span data-l="en">CSV statement import with duplicate detection, per-row errors and formula neutralization to prevent spreadsheet injection.</span>
+              </li>
+              <li>
+                <span data-l="es">Gastos e ingresos fijos que se confirman cada mes y no tocan el saldo hasta que se aprueban.</span>
+                <span data-l="en">Recurring expenses and income confirmed monthly, without touching balances until approved.</span>
+              </li>
+            </ul>
+            </details>
+          </div>
+          <div class="side">
+            <h4>Stack</h4>
+            <p>.NET 8, EF Core, PostgreSQL, React, TypeScript, Docker, GitHub Actions.</p>
+            <ul>
+              <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero"><span data-l="es">Ver más demos</span><span data-l="en">More demos</span></a></li>
+              <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero/blob/main/docs/arquitectura.md"><span data-l="es">Arquitectura</span><span data-l="en">Architecture</span></a></li>
+              <li><a href="https://github.com/FelipeValenzuela00/AsistenteFinanciero/tree/main/docs/decisiones"><span data-l="es">Decisiones técnicas</span><span data-l="en">Technical decisions</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <h3>AutoLog</h3>
+        <p class="summary">
+          <span data-l="es">Reconstruye la jornada laboral a partir de Google Calendar, Drive y Jira, y genera un informe diario con IA que se guarda en el Drive del empleado.</span>
+          <span data-l="en">Rebuilds an employee’s workday from Google Calendar, Drive and Jira, and writes a daily AI report saved to their Drive.</span>
+        </p>
+        <p class="context">
+          <span data-l="es">Proyecto final de Analista en Sistemas (ORT Belgrano), en equipo.</span>
+          <span data-l="en">Team capstone project for the Systems Analyst degree (ORT Belgrano).</span>
+        </p>
+        <figure>
+          <video src="assets/autolog-dashboard.mp4" poster="assets/autolog-dashboard.jpg" width="960" height="540" muted loop playsinline controls preload="metadata" data-autoplay></video>
+          <figcaption>
+            <span data-l="es">Reuniones, archivos y tickets del día en una sola línea de tiempo. Datos ficticios.</span>
+            <span data-l="en">The day’s meetings, files and tickets in one timeline. Fictional data.</span>
+          </figcaption>
+        </figure>
+        <div class="body">
+          <div class="detail">
+            <h4><span data-l="es">El problema</span><span data-l="en">The problem</span></h4>
+            <p>
+              <span data-l="es">Cargar horas a mano es tedioso y poco confiable: al final del día cuesta recordar en qué se fue el tiempo, aunque esa información ya existe repartida entre el calendario, los documentos editados y los tickets de Jira.</span>
+              <span data-l="en">Logging hours by hand is tedious and unreliable: by the end of the day it’s hard to remember where the time went, even though that information already exists across the calendar, edited documents and Jira tickets.</span>
+            </p>
+            <h4><span data-l="es">Qué hice</span><span data-l="en">What I did</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">Armé la base del backend: API en Express, esquema y migraciones con Prisma, y Docker.</span>
+                <span data-l="en">Set up the backend foundation: Express API, Prisma schema and migrations, and Docker.</span>
+              </li>
+              <li>
+                <span data-l="es">Hice el login con Google y la seguridad de sesiones: cookies HttpOnly, refresh tokens rotativos con detección de reuso y tokens de terceros cifrados.</span>
+                <span data-l="en">Built Google sign-in and session security: HttpOnly cookies, rotating refresh tokens with reuse detection, and encrypted third-party tokens.</span>
+              </li>
+              <li>
+                <span data-l="es">Sincronicé Google Calendar y unifiqué las actividades de todas las fuentes en una línea de tiempo.</span>
+                <span data-l="en">Synced Google Calendar and merged activity from every source into one timeline.</span>
+              </li>
+              <li>
+                <span data-l="es">Generé el informe diario con Gemini, con la entrada sanitizada y la salida validada antes de escribir la planilla.</span>
+                <span data-l="en">Built the daily report with Gemini, sanitizing the input and validating the output before writing the spreadsheet.</span>
+              </li>
+              <li>
+                <span data-l="es">En el frontend (React), corregí el dashboard, el historial, la página de administración y el login con Google, junto con sus tests.</span>
+                <span data-l="en">On the React frontend, I fixed the dashboard, the history view, the admin page and Google sign-in, along with their tests.</span>
+              </li>
+            </ul>
+
+            <details class="more">
+            <summary><span data-l="es"><span class="closed">Mostrar más</span><span class="opened">Mostrar menos</span></span><span data-l="en"><span class="closed">Show more</span><span class="opened">Show less</span></span></summary>
+            <h4><span data-l="es">Decisiones técnicas</span><span data-l="en">Technical decisions</span></h4>
+            <dl class="decisions">
+              <dt><span data-l="es">Sincronización idempotente</span><span data-l="en">Idempotent sync</span></dt>
+              <dd>
+                <span data-l="es">Volver a sincronizar el mismo día no duplica actividades: cada una tiene una clave única por usuario, fuente e ID externo.</span>
+                <span data-l="en">Re-syncing the same day doesn’t duplicate activities: each one has a unique key per user, source and external ID.</span>
+              </dd>
+              <dt><span data-l="es">Tokens de terceros cifrados con AES-256-GCM</span><span data-l="en">Third-party tokens encrypted with AES-256-GCM</span></dt>
+              <dd>
+                <span data-l="es">El proceso diario sincroniza sin que el usuario esté conectado y sin guardar sus credenciales en texto plano.</span>
+                <span data-l="en">The daily job syncs without the user being online, and without storing their credentials in plain text.</span>
+              </dd>
+              <dt><span data-l="es">Refresh tokens rotativos con detección de reuso</span><span data-l="en">Rotating refresh tokens with reuse detection</span></dt>
+              <dd>
+                <span data-l="es">Si alguien reutiliza un token viejo, se cierran todas las sesiones de ese usuario.</span>
+                <span data-l="en">If someone reuses an old token, every session for that user is revoked.</span>
+              </dd>
+              <dt><span data-l="es">Todo en UTC</span><span data-l="en">Everything in UTC</span></dt>
+              <dd>
+                <span data-l="es">El “día” de cada informe se interpreta en la zona horaria configurada para cada empleado, así el informe no corta la jornada a la medianoche de otro país.</span>
+                <span data-l="en">Each report’s “day” is read in the time zone set for each employee, so a report never cuts the workday at another country’s midnight.</span>
+              </dd>
+            </dl>
+
+            <h4><span data-l="es">Cómo sé que funciona</span><span data-l="en">How I know it works</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">Tests de backend con Jest y Supertest, y de frontend con Vitest y Testing Library.</span>
+                <span data-l="en">Backend tests with Jest and Supertest, frontend tests with Vitest and Testing Library.</span>
+              </li>
+              <li>
+                <span data-l="es">CI en GitHub Actions con análisis de código (CodeQL) y escaneo de seguridad en cada PR.</span>
+                <span data-l="en">CI on GitHub Actions with code analysis (CodeQL) and security scanning on every PR.</span>
+              </li>
+              <li>
+                <span data-l="es">Cobertura mínima del 80 %, exigida en el proyecto y cumplida.</span>
+                <span data-l="en">An 80% minimum test coverage, required by the project and met.</span>
+              </li>
+            </ul>
+
+            <h4><span data-l="es">Lo que aprendí</span><span data-l="en">What I learned</span></h4>
+            <ul class="did">
+              <li>
+                <span data-l="es">Fue mi primer proyecto integrando IA. Lo que más me costó fue integrar Google Drive y aprender a combinar APIs de distintos proveedores, como Google y Jira, cada una con su propia autenticación y su propio formato de datos.</span>
+                <span data-l="en">It was my first project integrating AI. The hardest part was integrating Google Drive and learning to combine APIs from different providers, like Google and Jira, each with its own authentication and data format.</span>
+              </li>
+            </ul>
+            </details>
+          </div>
+          <div class="side">
+            <h4>Stack</h4>
+            <p>Node.js, Express, Prisma, PostgreSQL, React, Tailwind CSS, Google APIs, Jira.</p>
+            <ul>
+              <li><a href="https://github.com/FelipeValenzuela00/AutoLog"><span data-l="es">Ver más demos</span><span data-l="en">More demos</span></a></li>
+              <li><a href="https://github.com/LicFuraca/proyecto-final-back"><span data-l="es">Código del backend</span><span data-l="en">Backend code</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <div class="others">
+        <h4><span data-l="es">Otros proyectos</span><span data-l="en">Other projects</span></h4>
+        <p>
+          <a href="https://github.com/FelipeValenzuela00/InstitutoEducativo">Instituto Educativo</a>.
+          <span data-l="es">Sistema de gestión académica en ASP.NET Core MVC, Entity Framework y SQL Server, con roles para empleados, profesores y alumnos. Proyecto universitario en un equipo de 4: desarrollé el módulo de profesores (calificaciones, promedios y materias concluidas) y la primera integración con Identity.</span>
+          <span data-l="en">Academic management system in ASP.NET Core MVC, Entity Framework and SQL Server, with roles for staff, teachers and students. University project in a team of 4: I built the teachers module (grading, averages and completed courses) and the first Identity integration.</span>
+        </p>
+        <p>
+          <a href="https://github.com/santi-porte/Bailongo">Bailongo</a>.
+          <span data-l="es">API REST de una red social de música en Node.js, Express y MongoDB (Mongoose), con autenticación JWT y roles. Trabajo práctico en un equipo de 3: desarrollé la funcionalidad de comentarios en canciones y correcciones en canciones, álbumes y artistas.</span>
+          <span data-l="en">REST API for a music social network in Node.js, Express and MongoDB (Mongoose), with JWT authentication and roles. Course project in a team of 3: I built song comments and fixed the songs, albums and artists endpoints.</span>
+        </p>
+        <p>
+          <a href="https://github.com/FelipeValenzuela00/checklist">Checklist</a>.
+          <span data-l="es">Frontend en Next.js y React para gestionar checklists operativos, con roles de supervisor y colaborador. Proyecto universitario en equipo: hice el login con redirección por rol, la protección de rutas, el cierre de sesión y la barra de notificaciones.</span>
+          <span data-l="en">Next.js and React frontend for managing operational checklists, with supervisor and collaborator roles. University team project: I built role-based login redirects, route protection, logout and the notifications bar.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="sobre-mi">
+      <h2 id="sobre-mi"><span data-l="es">Sobre mí</span><span data-l="en">About me</span></h2>
+      <div class="about-grid">
+      <img class="photo" src="assets/foto.jpg" width="480" height="480" loading="lazy" alt="Felipe Valenzuela">
+      <div>
+      <p>
+        <span data-l="es">Soy Analista de Sistemas recibido en ORT Belgrano. Desde 2020 hago soporte técnico: armo y reparo computadoras y ayudo a personas sin formación técnica a usar sus herramientas. También ayudé a la empresa Chul Hak San a digitalizar su operación con Google Workspace: relevé qué necesitaban, armé la solución (entre otras cosas, un mapa de sus sedes en Google My Maps generado desde sus planillas) y capacité al equipo para usarla. De ahí me quedó algo que uso todos los días al programar: entender qué necesita de verdad quien va a usar el sistema y explicar lo técnico en palabras simples.</span>
+        <span data-l="en">I hold a Systems Analyst degree from ORT Belgrano. Since 2020 I’ve done technical support: building and repairing computers and helping non-technical people use their tools. I also helped the company Chul Hak San digitize its operations with Google Workspace: I gathered what they needed, set up the solution (including a Google My Maps map of their locations built from their spreadsheets) and trained the team to use it. That left me with something I use every day when I code: understanding what the people using a system actually need, and explaining technical things in plain words.</span>
+      </p>
+      <p>
+        <span data-l="es">Mis proyectos principales los hice en equipo, y me gusta ser dueño de una funcionalidad de punta a punta. Hablo inglés (Cambridge B2, cursando C2). Busco un equipo donde construir producto real con IA y seguir creciendo en backend y sistemas con LLMs.</span>
+        <span data-l="en">I built my main projects in teams, and I like owning a feature end to end. I speak English (Cambridge B2, currently studying for C2). I’m looking for a team where I can build real AI-powered products and keep growing in backend and LLM systems.</span>
+      </p>
+      <p><a data-l="es" href="assets/cv-felipe-valenzuela-es.pdf">Descargar mi CV (PDF)</a><a data-l="en" href="assets/cv-felipe-valenzuela-en.pdf">Download my résumé (PDF)</a></p>
+      </div>
+      </div>
+    </section>
+
+    <section class="now" aria-labelledby="ahora">
+      <h2 id="ahora"><span data-l="es">Ahora</span><span data-l="en">Now</span></h2>
+      <p>
+        <span data-l="es">Me estoy especializando en sistemas con LLMs en Python. Lo hago en público en un programa de 12 semanas: ya terminé la fase de Python y ahora estoy trabajando con la API de Claude.</span>
+        <span data-l="en">I’m specializing in LLM systems with Python, learning in public through a 12-week program: I’ve finished the Python phase and I’m now working with the Claude API.</span>
+        <a href="https://github.com/FelipeValenzuela00/Path-To-AIengineering"><span data-l="es">Ver el programa</span><span data-l="en">See the program</span></a>.
+      </p>
+      <p class="small">
+        <a href="https://github.com/FelipeValenzuela00/Path-To-AIengineering/tree/main/fase1-python/organizador">organizador</a>.
+        <span data-l="es">CLI en Python que ordena una carpeta por tipo de archivo o por mes. Muestra el plan antes de mover nada y nunca sobrescribe. Tests con pytest, lint con ruff y CI en GitHub Actions.</span>
+        <span data-l="en">Python CLI that sorts a folder by file type or by month. It previews the plan before moving anything and never overwrites. Tested with pytest, linted with ruff, CI on GitHub Actions.</span>
+      </p>
+    </section>
+
+    <section aria-labelledby="herramientas">
+      <h2 id="herramientas"><span data-l="es">Herramientas</span><span data-l="en">Tools</span></h2>
+      <dl class="tools">
+        <dt>Backend</dt><dd>C#, .NET 8, Node.js, Express</dd>
+        <dt>Frontend</dt><dd>React, Next.js, TypeScript, Vite, Tailwind CSS</dd>
+        <dt><span data-l="es">Datos</span><span data-l="en">Data</span></dt><dd>PostgreSQL, SQL Server, MongoDB, EF Core, Prisma, Mongoose</dd>
+        <dt><span data-l="es">IA</span><span data-l="en">AI</span></dt><dd>Gemini, NVIDIA NIM</dd>
+        <dt><span data-l="es">Calidad y despliegue</span><span data-l="en">Quality and delivery</span></dt><dd>xUnit, Testcontainers, Jest, Vitest, Docker, GitHub Actions</dd>
+        <dt><span data-l="es">Aprendiendo</span><span data-l="en">Learning</span></dt><dd>Python (pytest, asyncio, pydantic), <span data-l="es">API de Claude</span><span data-l="en">Claude API</span></dd>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="end">
+    <p>
+      <span data-l="es">Busco mi próximo puesto como desarrollador full-stack.</span>
+      <span data-l="en">I’m looking for my next full-stack developer role.</span>
+    </p>
+    <a class="mail" href="mailto:valenzuela.felipe205@gmail.com">valenzuela.felipe205@gmail.com</a>
+  </footer>
+
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll(".langs button");
+    function show(lang) {
+      root.lang = lang;
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.set === lang)); });
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        show(b.dataset.set);
+        try { localStorage.setItem("lang", b.dataset.set); } catch (e) {}
+      });
+    });
+    show(root.lang);
+
+    // Videos: se reproducen solos solo si el usuario no pidió reducir el movimiento.
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.querySelectorAll("video[data-autoplay]").forEach(function (v) {
+        v.autoplay = true;
+        var p = v.play();
+        if (p) p.catch(function () {});
+      });
+    }
+  })();
+</script>
+</body>
+</html>
