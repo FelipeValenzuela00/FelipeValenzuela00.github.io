@@ -32,7 +32,7 @@ p { margin: 0; }
 
 .item { margin-bottom: 9pt; }
 .head, .sub { break-after: avoid; }
-li, .tech { break-inside: avoid; }
+li, .tech, .sub { break-inside: avoid; }
 .item:last-child { margin-bottom: 0; }
 .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
 h3 { font-size: 10.3pt; font-weight: 700; margin: 0; }
